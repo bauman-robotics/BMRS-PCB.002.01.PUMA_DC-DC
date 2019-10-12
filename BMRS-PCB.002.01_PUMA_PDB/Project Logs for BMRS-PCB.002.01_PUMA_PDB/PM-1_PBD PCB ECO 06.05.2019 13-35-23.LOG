@@ -1,0 +1,35 @@
+Change Component Comment : Designator=CN1 Old Comment=CAN_IN New Comment=2 18awg wires
+Change Component Comment : Designator=CN3 Old Comment=CAN_ST1_IN New Comment=2 18awg wires
+Change Component Comment : Designator=CN2 Old Comment=CAN_ST1_OUT New Comment=2 18awg wires
+Change Component Comment : Designator=CN4 Old Comment=CAN_ST2_OUT New Comment=2 18awg wires
+Change Component Library : Designator=CN1 Old Library=PUMAlib.SchLib New Library=PDB.SchLib
+Change Component Library : Designator=CN2 Old Library=PUMAlib.SchLib New Library=PDB.SchLib
+Change Component Library : Designator=CN3 Old Library=PUMAlib.SchLib New Library=PDB.SchLib
+Change Component Library : Designator=CN4 Old Library=PUMAlib.SchLib New Library=PDB.SchLib
+Change Component Kind : Designator=CN4 Old Kind=Standard New Kind=Standard (No BOM)
+Change Component Kind : Designator=CN3 Old Kind=Standard New Kind=Standard (No BOM)
+Change Component Kind : Designator=CN2 Old Kind=Standard New Kind=Standard (No BOM)
+Change Component Kind : Designator=CN1 Old Kind=Standard New Kind=Standard (No BOM)
+Added Component: Designator=D2(SMC)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Datasheet URL"; Value = "https://www.rohm.com/datasheet/1SS400CSFH/1ss400csfht2ra-e"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Manufacturer"; Value = "Rohm"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Package Reference"; Value = "ROHM-1SS400CSFH"; VariantName = "[No Variations]"
+Added Component: Designator=D3(SMC)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Datasheet URL"; Value = "https://www.rohm.com/datasheet/1SS400CSFH/1ss400csfht2ra-e"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Manufacturer"; Value = "Rohm"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Package Reference"; Value = "ROHM-1SS400CSFH"; VariantName = "[No Variations]"
+Added Pin To Net: NetName=GND Pin=D2-2
+Added Pin To Net: NetName=GND Pin=D3-2
+Added Pin To Net: NetName=NetD2_1 Pin=D2-1
+Added Pin To Net: NetName=NetD2_1 Pin=L2-1
+Added Pin To Net: NetName=NetD2_1 Pin=U2-2
+Added Net: Name=NetD2_1
+Added Pin To Net: NetName=NetD3_1 Pin=D3-1
+Added Pin To Net: NetName=NetD3_1 Pin=L3-1
+Added Pin To Net: NetName=NetD3_1 Pin=U3-2
+Added Net: Name=NetD3_1
+Added Member To Class: ClassName=PM-1_PDB Member=Component D2 B560C-13-F
+Added Member To Class: ClassName=PM-1_PDB Member=Component D3 B560C-13-F
+Added Room: Name=PM-1_PDB

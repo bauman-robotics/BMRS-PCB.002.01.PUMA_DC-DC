@@ -1,0 +1,527 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html">
+<style type="text/css">
+		h1, h2, h3, h4, h5, h6 {
+			font-family : segoe ui;
+			color : black;
+			background-color : #EDE7D9;
+			padding: 0.3em;
+		}
+
+		h1 {
+			font-size: 1.2em;
+		}		
+
+		h2 {
+			font-size: 1.2em;
+		}
+
+		body {
+			font-family : segoe ui;
+		}
+
+		td, th {
+			padding: 0.5em;
+			text-align : left;
+			width: 10em;
+		}
+		th {
+			background-color : #EEEEEE;
+
+		}
+		th.column1, td.column1 {
+			text-align: left;
+			width : auto;
+		}
+		table {
+			width : 100%;
+			font-size: 0.9em;
+		}
+
+		.DRC_summary_header {
+			padding-bottom : 0.1em;
+			border : 0px solid black;
+			width: 100%;
+			align: left;
+		}
+
+		.DRC_summary_header_col1,
+		.DRC_summary_header_col2, 
+		.DRC_summary_header_col3 {
+			color : black;
+			font-size:100%;
+			padding : 0em;
+			padding-top : 0.2em;
+			padding-bottom 0.2em;
+			border : 0px solid black;
+			vertical-align: top;
+			text-align: left;
+		}
+
+		.DRC_summary_header_col1 {
+			font-weight: bold;
+			width: 8em;
+		}
+
+		.DRC_summary_header_col2 {
+			width: 0.1em;
+		
+		}
+
+		.DRC_summary_header_col3 {
+			width : auto;
+		}
+
+		.header_holder {
+		    Width = 100%;
+		    border = 0px solid green;
+		    padding = 0;
+		}
+
+
+		.front_matter, .front_matter_column1, .front_matter_column2, .front_matter_column3
+		{
+			left : 0;
+			top : 0;
+			padding: 0em;
+			padding-top : 0.1em;
+			border : 0px solid black;
+			width : 100%;
+			vertical-align: top;
+			text-align: left;
+		}
+
+		.front_matter_column1 {
+			width : 8em;
+			font-weight: bold;
+		}
+
+		.front_matter_column2 {
+			width: 0.1em;
+		}
+
+		.front_matter_column3 {
+			width : auto;
+		}
+
+		.total_column1, .total_column {
+			font-weight : bold;
+		}
+		.total_column1 {
+			text-align : left;
+		}
+		.warning, .error {
+			color : red;
+			font-weight : bold;
+		}
+		tr.onmouseout_odd {
+			background-color : #white;
+		}
+		tr.onmouseout_even { 
+			background-color : #FAFAFA;
+		}
+		tr.onmouseover_odd, tr.onmouseover_even { 
+			background-color : #EEEEEE;
+		} 
+		a:link, a:visited, .q a:link,.q a:active,.q {
+			color: #21489e; 
+		}
+		a:link.callback, a:visited.callback { 
+			color: #21489e;
+		}
+		a:link.customize, a:visited.customize {
+			color: #C0C0C0;
+			position: absolute; 
+			right: 10px;
+		}	
+		p.contents_level1 {
+			font-weight : bold;
+			font-size : 110%;
+			margin : 0.5em;
+		}
+		p.contents_level2 {
+			position : relative;
+			left : 20px;
+			margin : 0.5em;
+		}
+	</style><script type="text/javascript">
+		function coordToMils(coord) {
+			var number = coord / 10000;
+			
+			if (number != number.toFixed(3))
+				number = number.toFixed(3);
+
+			return number + 'mil'
+		}
+
+		function coordToMM(coord) {
+			var number = 0.0254 * coord / 10000;
+			
+			if (number != number.toFixed(4))
+				number = number.toFixed(4);
+			
+			return number + 'mm'
+		}
+	
+		function convertCoord(coordNode, units) {
+			for (var i = 0; i < coordNode.childNodes.length; i++) {
+				coordNode.removeChild(coordNode.childNodes[i]);
+			}
+
+			var coord = coordNode.getAttribute('value');
+			if (coord != null) {
+				if (units == 'mm') {
+					textNode = document.createTextNode(coordToMM(coord));
+					coordNode.appendChild(textNode);
+				} else if (units == 'mil') {
+					textNode = document.createTextNode(coordToMils(coord));		
+					coordNode.appendChild(textNode);	
+				}
+			}
+		}
+	
+		function convertUnits(unitNode, units) {
+			for (var i = 0; i < unitNode.childNodes.length; i++) {
+				unitNode.removeChild(unitNode.childNodes[i]);		
+			}
+		
+			textNode = document.createTextNode(units); 
+			unitNode.appendChild(textNode);
+		}
+	
+		function changeUnits(radio_input, units) {
+			if (radio_input.checked) {
+			
+				var elements = document.getElementsByName('coordinate');
+				if (elements) {
+					for (var i = 0; i < elements.length; i++) {
+						convertCoord(elements[i], units);
+					}
+				}
+	
+				var elements = document.getElementsByName('units');
+				if (elements) {
+					for (var i = 0; i < elements.length; i++) {
+						convertUnits(elements[i], units);
+					}
+				}
+			}
+		}
+	</script><title>Design Rule Verification Report</title>
+</head>
+<body onload=""><img ALT="Altium" src="
+			file://C:\Users\Public\Documents\Altium\AD19\Templates\AD_logo.png
+		"><h1>Design Rule Verification Report</h1>
+<table class="header_holder">
+<td class="column1">
+<table class="front_matter">
+<tr class="front_matter">
+<td class="front_matter_column1">Date:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">06.05.2019</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Time:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">13:05:07</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Elapsed Time:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">00:00:02</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Filename:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3"><a href="file:///C:\Users\ivank\Desktop\Embed\PCB\Puma\BMRS-PCB.001.01_PUMA_Motor_Driver\BMRS-PCB.002.01_PUMA_PDB\PM-1_PBD.PcbDoc" class="file"><acronym title="C:\Users\ivank\Desktop\Embed\PCB\Puma\BMRS-PCB.001.01_PUMA_Motor_Driver\BMRS-PCB.002.01_PUMA_PDB\PM-1_PBD.PcbDoc">C:\Users\ivank\Desktop\Embed\PCB\Puma\BMRS-PCB.001.01_PUMA_Motor_Driver\BMRS-PCB.002.01_PUMA_PDB\PM-1_PBD.PcbDoc</acronym></a></td>
+</tr>
+</table>
+</td>
+<td class="column2">
+<table class="DRC_summary_header">
+<tr>
+<td class="DRC_summary_header_col1">Warnings:</td>
+<td class="DRC_summary_header_col2"></td>
+<td class="DRC_summary_header_col3">0</td></tr>
+<tr>
+<td class="DRC_summary_header_col1">Rule Violations:</td>
+<td class="DRC_summary_header_col2"></td>
+<td class="DRC_summary_header_col3" style="color : red">61</td></tr>
+</table>
+</td>
+</table><a name="IDLXD5F0YAF1FWG4DK3KZY45DUZKJGY4AJ13XUBWGTPJJFJNL5LUYB"><h2>Summary</h2></a><table>
+<tr>
+<th class="column1">Warnings</th>
+<th class="column2">Count</th>
+</tr>
+<tr>
+<td style="font-weight : bold; text-align : right" class="column1">Total</td>
+<td style="font-weight : bold" class="column2">0</td>
+</tr>
+</table><br><table>
+<tr>
+<th class="column1">Rule Violations</th>
+<th class="column2">Count</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDPYREKUPTSKGUKW3D14LWIEK5CLRIARENKIH234MMH1VL4DHO5LCB">Clearance Constraint (Gap=0.3mm) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#ID0FEQ45YHHBRWC0ZBJ0XYMIAVZC1TLFSQV1M1RICZ5BWNV54L3RW">Short-Circuit Constraint (Allowed=No) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDGWHQZELUXNCNDEFDP231Q1V0KOKOZNYRECT5COCYJJBYBFZ402UD">Un-Routed Net Constraint ( (All) )</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDY1LC1VH4OCZ3HRZX5P1GCDXLWLU2JZILTPFJSFFYDSPEIXELMSJK">Modified Polygon (Allow modified: No), (Allow shelved: No)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDIPJI0IHMLJUJIH2Z0EXHQB0DKMVRRMPJ5MAFOPDQGXZRZ5ZZ3HIF">Width Constraint (Min=0.2mm) (Max=55mm) (Preferred=0.254mm) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDMFCXX1MLJQSXIWRIVRHKA1ITZKODXK02XYZRZBBLGFUWIQYQWUH">Power Plane Connect Rule(Relief Connect )(Expansion=0.508mm) (Conductor Width=0.254mm) (Air Gap=0.254mm) (Entries=4) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#ID4XU5EOKWI44GBK2X5HBBLIBC2BVC31A15GWIIMJIIGLZZZIH4NFM">Hole Size Constraint (Min=0.025mm) (Max=2.54mm) (All)</a></td>
+<td class="column2">6</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDHUAHR0KLPXJLEBJESY50IQPIYMAYMU20L5DJULFC23DQNSR4BFAF">Hole To Hole Clearance (Gap=0.254mm) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDB4W3UF1UAPNLFDQNTOLTXV1EFLOXNIEDDRDWJIMYDA2J3Y2NYXTM">Minimum Solder Mask Sliver (Gap=0.254mm) (All),(All)</a></td>
+<td class="column2">25</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDGT3WNMNKQTGJEZUSQ5P2SAZ4RNLXTRF1Y0OTI0CRRY1LBIJ4ENGJ">Silk To Solder Mask (Clearance=0.254mm) (IsPad),(All)</a></td>
+<td class="column2">21</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDSA3HOHL3JAB5MTMMZVJMFFYAHNF10PVQO5GY4Z41L5MT2H2VTOK">Silk to Silk (Clearance=0.254mm) (All),(All)</a></td>
+<td class="column2">9</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDQ0MQEUJXWUMOJRNVETAZEPPG2J0NTK2W1ELZXBIVHFQV5XKDHXZF">Net Antennae (Tolerance=0mm) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#ID3KWWCD2UON1EIE0OCKM4XLOJVOGEZVBB3VZBDUHU4IKE2NUHLYCP">Board Clearance Constraint (Gap=0mm) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDSYZQDRSZO31EBVJRMRWAKQBXAPUHLZM4RND0FHPZXHQRLGKWKB0">Height Constraint (Min=0mm) (Max=25.4mm) (Prefered=12.7mm) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr>
+<td style="font-weight : bold; text-align : right" class="column1">Total</td>
+<td style="font-weight : bold" class="column2">61</td>
+</tr>
+</table><br><a name="ID4XU5EOKWI44GBK2X5HBBLIBC2BVC31A15GWIIMJIIGLZZZIH4NFM"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Hole Size Constraint (Min=0.025mm) (Max=2.54mm) (All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\ivank\Desktop\Embed\PCB\Puma\BMRS-PCB.001.01_PUMA_Motor_Driver\BMRS-PCB.002.01_PUMA_PDB\PM-1_PBD.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1865.517mil|Location2.X=1992.751mil|Location1.Y=133.233mil|Location2.Y=260.467mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\ivank\Desktop\Embed\PCB\Puma\BMRS-PCB.001.01_PUMA_Motor_Driver\BMRS-PCB.002.01_PUMA_PDB\PM-1_PBD.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1865.517mil|Location2.X=1992.751mil|Location1.Y=133.233mil|Location2.Y=260.467mil|Absolute=True">Hole Size Constraint: (3.2mm &gt; 2.54mm) Pad Free-1(49mm,5mm) on Multi-Layer Actual Hole Size = 3.2mm</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\ivank\Desktop\Embed\PCB\Puma\BMRS-PCB.001.01_PUMA_Motor_Driver\BMRS-PCB.002.01_PUMA_PDB\PM-1_PBD.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=133.233mil|Location2.X=260.467mil|Location1.Y=4306.462mil|Location2.Y=4433.696mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\ivank\Desktop\Embed\PCB\Puma\BMRS-PCB.001.01_PUMA_Motor_Driver\BMRS-PCB.002.01_PUMA_PDB\PM-1_PBD.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=133.233mil|Location2.X=260.467mil|Location1.Y=4306.462mil|Location2.Y=4433.696mil|Absolute=True">Hole Size Constraint: (3.2mm &gt; 2.54mm) Pad Free-2(5mm,111mm) on Multi-Layer Actual Hole Size = 3.2mm</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\ivank\Desktop\Embed\PCB\Puma\BMRS-PCB.001.01_PUMA_Motor_Driver\BMRS-PCB.002.01_PUMA_PDB\PM-1_PBD.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=133.233mil|Location2.X=260.467mil|Location1.Y=133.233mil|Location2.Y=260.467mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\ivank\Desktop\Embed\PCB\Puma\BMRS-PCB.001.01_PUMA_Motor_Driver\BMRS-PCB.002.01_PUMA_PDB\PM-1_PBD.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=133.233mil|Location2.X=260.467mil|Location1.Y=133.233mil|Location2.Y=260.467mil|Absolute=True">Hole Size Constraint: (3.2mm &gt; 2.54mm) Pad Free-2(5mm,5mm) on Multi-Layer Actual Hole Size = 3.2mm</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\ivank\Desktop\Embed\PCB\Puma\BMRS-PCB.001.01_PUMA_Motor_Driver\BMRS-PCB.002.01_PUMA_PDB\PM-1_PBD.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2889.139mil|Location2.X=3016.373mil|Location1.Y=133.233mil|Location2.Y=260.467mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\ivank\Desktop\Embed\PCB\Puma\BMRS-PCB.001.01_PUMA_Motor_Driver\BMRS-PCB.002.01_PUMA_PDB\PM-1_PBD.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2889.139mil|Location2.X=3016.373mil|Location1.Y=133.233mil|Location2.Y=260.467mil|Absolute=True">Hole Size Constraint: (3.2mm &gt; 2.54mm) Pad Free-2(75mm,5mm) on Multi-Layer Actual Hole Size = 3.2mm</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\ivank\Desktop\Embed\PCB\Puma\BMRS-PCB.001.01_PUMA_Motor_Driver\BMRS-PCB.002.01_PUMA_PDB\PM-1_PBD.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3164.729mil|Location2.X=3291.964mil|Location1.Y=4306.462mil|Location2.Y=4433.696mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\ivank\Desktop\Embed\PCB\Puma\BMRS-PCB.001.01_PUMA_Motor_Driver\BMRS-PCB.002.01_PUMA_PDB\PM-1_PBD.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3164.729mil|Location2.X=3291.964mil|Location1.Y=4306.462mil|Location2.Y=4433.696mil|Absolute=True">Hole Size Constraint: (3.2mm &gt; 2.54mm) Pad Free-2(82mm,111mm) on Multi-Layer Actual Hole Size = 3.2mm</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\ivank\Desktop\Embed\PCB\Puma\BMRS-PCB.001.01_PUMA_Motor_Driver\BMRS-PCB.002.01_PUMA_PDB\PM-1_PBD.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3164.729mil|Location2.X=3291.964mil|Location1.Y=133.233mil|Location2.Y=260.467mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\ivank\Desktop\Embed\PCB\Puma\BMRS-PCB.001.01_PUMA_Motor_Driver\BMRS-PCB.002.01_PUMA_PDB\PM-1_PBD.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3164.729mil|Location2.X=3291.964mil|Location1.Y=133.233mil|Location2.Y=260.467mil|Absolute=True">Hole Size Constraint: (3.2mm &gt; 2.54mm) Pad Free-2(82mm,5mm) on Multi-Layer Actual Hole Size = 3.2mm</acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="IDB4W3UF1UAPNLFDQNTOLTXV1EFLOXNIEDDRDWJIMYDA2J3Y2NYXTM"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Minimum Solder Mask Sliver (Gap=0.254mm) (All),(All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\ivank\Desktop\Embed\PCB\Puma\BMRS-PCB.001.01_PUMA_Motor_Driver\BMRS-PCB.002.01_PUMA_PDB\PM-1_PBD.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2336.895mil|Location2.X=2348.145mil|Location1.Y=1678.922mil|Location2.Y=1690.172mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\ivank\Desktop\Embed\PCB\Puma\BMRS-PCB.001.01_PUMA_Motor_Driver\BMRS-PCB.002.01_PUMA_PDB\PM-1_PBD.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2336.895mil|Location2.X=2348.145mil|Location1.Y=1678.922mil|Location2.Y=1690.172mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.197mm &lt; 0.254mm) Between Pad C10-1(59.05mm,43mm) on Top Layer And Pad C10-2(59.95mm,43mm) on Top Layer [Top Solder] Mask Sliver [0.197mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\ivank\Desktop\Embed\PCB\Puma\BMRS-PCB.001.01_PUMA_Motor_Driver\BMRS-PCB.002.01_PUMA_PDB\PM-1_PBD.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2210.418mil|Location2.X=2221.668mil|Location1.Y=1411.698mil|Location2.Y=1422.948mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\ivank\Desktop\Embed\PCB\Puma\BMRS-PCB.001.01_PUMA_Motor_Driver\BMRS-PCB.002.01_PUMA_PDB\PM-1_PBD.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2210.418mil|Location2.X=2221.668mil|Location1.Y=1411.698mil|Location2.Y=1422.948mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.197mm &lt; 0.254mm) Between Pad C1-1(56.5mm,35.55mm) on Top Layer And Pad C1-2(56.5mm,36.45mm) on Top Layer [Top Solder] Mask Sliver [0.197mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\ivank\Desktop\Embed\PCB\Puma\BMRS-PCB.001.01_PUMA_Motor_Driver\BMRS-PCB.002.01_PUMA_PDB\PM-1_PBD.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2514.06mil|Location2.X=2525.31mil|Location1.Y=1688.765mil|Location2.Y=1700.015mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\ivank\Desktop\Embed\PCB\Puma\BMRS-PCB.001.01_PUMA_Motor_Driver\BMRS-PCB.002.01_PUMA_PDB\PM-1_PBD.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2514.06mil|Location2.X=2525.31mil|Location1.Y=1688.765mil|Location2.Y=1700.015mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.197mm &lt; 0.254mm) Between Pad C11-1(64.45mm,43.25mm) on Top Layer And Pad C11-2(63.55mm,43.25mm) on Top Layer [Top Solder] Mask Sliver [0.197mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\ivank\Desktop\Embed\PCB\Puma\BMRS-PCB.001.01_PUMA_Motor_Driver\BMRS-PCB.002.01_PUMA_PDB\PM-1_PBD.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1855.967mil|Location2.X=1867.217mil|Location1.Y=3214.355mil|Location2.Y=3225.605mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\ivank\Desktop\Embed\PCB\Puma\BMRS-PCB.001.01_PUMA_Motor_Driver\BMRS-PCB.002.01_PUMA_PDB\PM-1_PBD.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1855.967mil|Location2.X=1867.217mil|Location1.Y=3214.355mil|Location2.Y=3225.605mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.197mm &lt; 0.254mm) Between Pad C13-1(46.834mm,82mm) on Top Layer And Pad C13-2(47.734mm,82mm) on Top Layer [Top Solder] Mask Sliver [0.197mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\ivank\Desktop\Embed\PCB\Puma\BMRS-PCB.001.01_PUMA_Motor_Driver\BMRS-PCB.002.01_PUMA_PDB\PM-1_PBD.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1791.127mil|Location2.X=1802.377mil|Location1.Y=3273.41mil|Location2.Y=3284.66mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\ivank\Desktop\Embed\PCB\Puma\BMRS-PCB.001.01_PUMA_Motor_Driver\BMRS-PCB.002.01_PUMA_PDB\PM-1_PBD.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1791.127mil|Location2.X=1802.377mil|Location1.Y=3273.41mil|Location2.Y=3284.66mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.197mm &lt; 0.254mm) Between Pad C14-1(45.188mm,83.5mm) on Top Layer And Pad C14-2(46.087mm,83.5mm) on Top Layer [Top Solder] Mask Sliver [0.197mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\ivank\Desktop\Embed\PCB\Puma\BMRS-PCB.001.01_PUMA_Motor_Driver\BMRS-PCB.002.01_PUMA_PDB\PM-1_PBD.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1766.029mil|Location2.X=1777.279mil|Location1.Y=3262.584mil|Location2.Y=3273.834mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\ivank\Desktop\Embed\PCB\Puma\BMRS-PCB.001.01_PUMA_Motor_Driver\BMRS-PCB.002.01_PUMA_PDB\PM-1_PBD.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1766.029mil|Location2.X=1777.279mil|Location1.Y=3262.584mil|Location2.Y=3273.834mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.222mm &lt; 0.254mm) Between Pad C14-1(45.188mm,83.5mm) on Top Layer And Via (45mm,82.5mm) from Top Layer to Bottom Layer [Top Solder] Mask Sliver [0.222mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\ivank\Desktop\Embed\PCB\Puma\BMRS-PCB.001.01_PUMA_Motor_Driver\BMRS-PCB.002.01_PUMA_PDB\PM-1_PBD.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1802.126mil|Location2.X=1813.376mil|Location1.Y=3831.973mil|Location2.Y=3843.223mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\ivank\Desktop\Embed\PCB\Puma\BMRS-PCB.001.01_PUMA_Motor_Driver\BMRS-PCB.002.01_PUMA_PDB\PM-1_PBD.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1802.126mil|Location2.X=1813.376mil|Location1.Y=3831.973mil|Location2.Y=3843.223mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.197mm &lt; 0.254mm) Between Pad C17-1(45.467mm,97.687mm) on Top Layer And Pad C17-2(46.367mm,97.687mm) on Top Layer [Top Solder] Mask Sliver [0.197mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\ivank\Desktop\Embed\PCB\Puma\BMRS-PCB.001.01_PUMA_Motor_Driver\BMRS-PCB.002.01_PUMA_PDB\PM-1_PBD.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1788.16mil|Location2.X=1799.41mil|Location1.Y=3821.491mil|Location2.Y=3832.741mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\ivank\Desktop\Embed\PCB\Puma\BMRS-PCB.001.01_PUMA_Motor_Driver\BMRS-PCB.002.01_PUMA_PDB\PM-1_PBD.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1788.16mil|Location2.X=1799.41mil|Location1.Y=3821.491mil|Location2.Y=3832.741mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.204mm &lt; 0.254mm) Between Pad C17-1(45.467mm,97.687mm) on Top Layer And Pad R7-1(45.314mm,96.625mm) on Top Layer [Top Solder] Mask Sliver [0.204mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\ivank\Desktop\Embed\PCB\Puma\BMRS-PCB.001.01_PUMA_Motor_Driver\BMRS-PCB.002.01_PUMA_PDB\PM-1_PBD.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1823.778mil|Location2.X=1835.028mil|Location1.Y=3821.491mil|Location2.Y=3832.741mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\ivank\Desktop\Embed\PCB\Puma\BMRS-PCB.001.01_PUMA_Motor_Driver\BMRS-PCB.002.01_PUMA_PDB\PM-1_PBD.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1823.778mil|Location2.X=1835.028mil|Location1.Y=3821.491mil|Location2.Y=3832.741mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.204mm &lt; 0.254mm) Between Pad C17-2(46.367mm,97.687mm) on Top Layer And Pad R7-2(46.714mm,96.625mm) on Top Layer [Top Solder] Mask Sliver [0.204mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\ivank\Desktop\Embed\PCB\Puma\BMRS-PCB.001.01_PUMA_Motor_Driver\BMRS-PCB.002.01_PUMA_PDB\PM-1_PBD.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2147.644mil|Location2.X=2158.894mil|Location1.Y=2269.776mil|Location2.Y=2281.026mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\ivank\Desktop\Embed\PCB\Puma\BMRS-PCB.001.01_PUMA_Motor_Driver\BMRS-PCB.002.01_PUMA_PDB\PM-1_PBD.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2147.644mil|Location2.X=2158.894mil|Location1.Y=2269.776mil|Location2.Y=2281.026mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.049mm &lt; 0.254mm) Between Pad C2-2(54mm,59.275mm) on Top Layer And Via (55mm,57.5mm) from Top Layer to Bottom Layer [Top Solder] Mask Sliver [0.049mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\ivank\Desktop\Embed\PCB\Puma\BMRS-PCB.001.01_PUMA_Motor_Driver\BMRS-PCB.002.01_PUMA_PDB\PM-1_PBD.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1782.937mil|Location2.X=1794.187mil|Location1.Y=2269.079mil|Location2.Y=2281.146mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\ivank\Desktop\Embed\PCB\Puma\BMRS-PCB.001.01_PUMA_Motor_Driver\BMRS-PCB.002.01_PUMA_PDB\PM-1_PBD.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1782.937mil|Location2.X=1794.187mil|Location1.Y=2269.079mil|Location2.Y=2281.146mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.243mm &lt; 0.254mm) Between Pad C3-2(46.25mm,59.275mm) on Top Layer And Via (45mm,57.5mm) from Top Layer to Bottom Layer [Top Solder] Mask Sliver [0.243mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\ivank\Desktop\Embed\PCB\Puma\BMRS-PCB.001.01_PUMA_Motor_Driver\BMRS-PCB.002.01_PUMA_PDB\PM-1_PBD.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1847.546mil|Location2.X=1858.796mil|Location1.Y=2269.896mil|Location2.Y=2282.021mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\ivank\Desktop\Embed\PCB\Puma\BMRS-PCB.001.01_PUMA_Motor_Driver\BMRS-PCB.002.01_PUMA_PDB\PM-1_PBD.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1847.546mil|Location2.X=1858.796mil|Location1.Y=2269.896mil|Location2.Y=2282.021mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.243mm &lt; 0.254mm) Between Pad C3-2(46.25mm,59.275mm) on Top Layer And Via (47.5mm,57.5mm) from Top Layer to Bottom Layer [Top Solder] Mask Sliver [0.243mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\ivank\Desktop\Embed\PCB\Puma\BMRS-PCB.001.01_PUMA_Motor_Driver\BMRS-PCB.002.01_PUMA_PDB\PM-1_PBD.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2307.367mil|Location2.X=2318.617mil|Location1.Y=1334.434mil|Location2.Y=1345.684mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\ivank\Desktop\Embed\PCB\Puma\BMRS-PCB.001.01_PUMA_Motor_Driver\BMRS-PCB.002.01_PUMA_PDB\PM-1_PBD.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2307.367mil|Location2.X=2318.617mil|Location1.Y=1334.434mil|Location2.Y=1345.684mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.197mm &lt; 0.254mm) Between Pad C6-1(58.3mm,34.25mm) on Top Layer And Pad C6-2(59.2mm,34.25mm) on Top Layer [Top Solder] Mask Sliver [0.197mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\ivank\Desktop\Embed\PCB\Puma\BMRS-PCB.001.01_PUMA_Motor_Driver\BMRS-PCB.002.01_PUMA_PDB\PM-1_PBD.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2030.592mil|Location2.X=2041.842mil|Location1.Y=1169.069mil|Location2.Y=1182.584mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\ivank\Desktop\Embed\PCB\Puma\BMRS-PCB.001.01_PUMA_Motor_Driver\BMRS-PCB.002.01_PUMA_PDB\PM-1_PBD.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2030.592mil|Location2.X=2041.842mil|Location1.Y=1169.069mil|Location2.Y=1182.584mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.191mm &lt; 0.254mm) Between Pad C7-1(52.475mm,29mm) on Top Layer And Via (51.25mm,30mm) from Top Layer to Bottom Layer [Top Solder] Mask Sliver [0.191mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\ivank\Desktop\Embed\PCB\Puma\BMRS-PCB.001.01_PUMA_Motor_Driver\BMRS-PCB.002.01_PUMA_PDB\PM-1_PBD.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1992.407mil|Location2.X=2003.657mil|Location1.Y=1569.178mil|Location2.Y=1580.428mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\ivank\Desktop\Embed\PCB\Puma\BMRS-PCB.001.01_PUMA_Motor_Driver\BMRS-PCB.002.01_PUMA_PDB\PM-1_PBD.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1992.407mil|Location2.X=2003.657mil|Location1.Y=1569.178mil|Location2.Y=1580.428mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.197mm &lt; 0.254mm) Between Pad D1-2(49.5mm,40.5mm) on Top Layer And Via (51.25mm,40mm) from Top Layer to Bottom Layer [Top Solder] Mask Sliver [0.197mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\ivank\Desktop\Embed\PCB\Puma\BMRS-PCB.001.01_PUMA_Motor_Driver\BMRS-PCB.002.01_PUMA_PDB\PM-1_PBD.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1794.396mil|Location2.X=1805.646mil|Location1.Y=168.906mil|Location2.Y=180.156mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\ivank\Desktop\Embed\PCB\Puma\BMRS-PCB.001.01_PUMA_Motor_Driver\BMRS-PCB.002.01_PUMA_PDB\PM-1_PBD.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1794.396mil|Location2.X=1805.646mil|Location1.Y=168.906mil|Location2.Y=180.156mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.253mm &lt; 0.254mm) Between Pad Free-1(49mm,5mm) on Multi-Layer And Pad PTH19-1(44mm,5mm) on Multi-Layer [Top Solder] Mask Sliver [0.253mm] / [Bottom Solder] Mask Sliver [0.253mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\ivank\Desktop\Embed\PCB\Puma\BMRS-PCB.001.01_PUMA_Motor_Driver\BMRS-PCB.002.01_PUMA_PDB\PM-1_PBD.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=320.162mil|Location2.X=331.412mil|Location1.Y=191.225mil|Location2.Y=202.475mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\ivank\Desktop\Embed\PCB\Puma\BMRS-PCB.001.01_PUMA_Motor_Driver\BMRS-PCB.002.01_PUMA_PDB\PM-1_PBD.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=320.162mil|Location2.X=331.412mil|Location1.Y=191.225mil|Location2.Y=202.475mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.147mm &lt; 0.254mm) Between Pad Free-2(5mm,5mm) on Multi-Layer And Via (8.75mm,5mm) from Top Layer to Bottom Layer [Top Solder] Mask Sliver [0.147mm] / [Bottom Solder] Mask Sliver [0.147mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\ivank\Desktop\Embed\PCB\Puma\BMRS-PCB.001.01_PUMA_Motor_Driver\BMRS-PCB.002.01_PUMA_PDB\PM-1_PBD.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2818.018mil|Location2.X=2829.268mil|Location1.Y=168.906mil|Location2.Y=180.156mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\ivank\Desktop\Embed\PCB\Puma\BMRS-PCB.001.01_PUMA_Motor_Driver\BMRS-PCB.002.01_PUMA_PDB\PM-1_PBD.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2818.018mil|Location2.X=2829.268mil|Location1.Y=168.906mil|Location2.Y=180.156mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.253mm &lt; 0.254mm) Between Pad Free-2(75mm,5mm) on Multi-Layer And Pad PTH28-1(70mm,5mm) on Multi-Layer [Top Solder] Mask Sliver [0.253mm] / [Bottom Solder] Mask Sliver [0.253mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\ivank\Desktop\Embed\PCB\Puma\BMRS-PCB.001.01_PUMA_Motor_Driver\BMRS-PCB.002.01_PUMA_PDB\PM-1_PBD.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2356.58mil|Location2.X=2367.83mil|Location1.Y=1885.123mil|Location2.Y=1896.373mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\ivank\Desktop\Embed\PCB\Puma\BMRS-PCB.001.01_PUMA_Motor_Driver\BMRS-PCB.002.01_PUMA_PDB\PM-1_PBD.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2356.58mil|Location2.X=2367.83mil|Location1.Y=1885.123mil|Location2.Y=1896.373mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.247mm &lt; 0.254mm) Between Pad L1-2(59.95mm,50.75mm) on Top Layer And Via (60mm,47.5mm) from Top Layer to Bottom Layer [Top Solder] Mask Sliver [0.247mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\ivank\Desktop\Embed\PCB\Puma\BMRS-PCB.001.01_PUMA_Motor_Driver\BMRS-PCB.002.01_PUMA_PDB\PM-1_PBD.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2237.485mil|Location2.X=2248.735mil|Location1.Y=3439.257mil|Location2.Y=3450.507mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\ivank\Desktop\Embed\PCB\Puma\BMRS-PCB.001.01_PUMA_Motor_Driver\BMRS-PCB.002.01_PUMA_PDB\PM-1_PBD.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2237.485mil|Location2.X=2248.735mil|Location1.Y=3439.257mil|Location2.Y=3450.507mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.247mm &lt; 0.254mm) Between Pad L3-1(54.25mm,88.05mm) on Top Layer And Via (57.5mm,87.5mm) from Top Layer to Bottom Layer [Top Solder] Mask Sliver [0.247mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\ivank\Desktop\Embed\PCB\Puma\BMRS-PCB.001.01_PUMA_Motor_Driver\BMRS-PCB.002.01_PUMA_PDB\PM-1_PBD.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2237.485mil|Location2.X=2248.735mil|Location1.Y=3832.958mil|Location2.Y=3844.208mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\ivank\Desktop\Embed\PCB\Puma\BMRS-PCB.001.01_PUMA_Motor_Driver\BMRS-PCB.002.01_PUMA_PDB\PM-1_PBD.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2237.485mil|Location2.X=2248.735mil|Location1.Y=3832.958mil|Location2.Y=3844.208mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.247mm &lt; 0.254mm) Between Pad L3-2(54.25mm,97.95mm) on Top Layer And Via (57.5mm,97.5mm) from Top Layer to Bottom Layer [Top Solder] Mask Sliver [0.247mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\ivank\Desktop\Embed\PCB\Puma\BMRS-PCB.001.01_PUMA_Motor_Driver\BMRS-PCB.002.01_PUMA_PDB\PM-1_PBD.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3291.619mil|Location2.X=3302.869mil|Location1.Y=3715.832mil|Location2.Y=3727.082mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\ivank\Desktop\Embed\PCB\Puma\BMRS-PCB.001.01_PUMA_Motor_Driver\BMRS-PCB.002.01_PUMA_PDB\PM-1_PBD.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3291.619mil|Location2.X=3302.869mil|Location1.Y=3715.832mil|Location2.Y=3727.082mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.147mm &lt; 0.254mm) Between Pad PTH36-1(83.75mm,92.75mm) on Multi-Layer And Via (83.75mm,95mm) from Top Layer to Bottom Layer [Top Solder] Mask Sliver [0.147mm] / [Bottom Solder] Mask Sliver [0.147mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\ivank\Desktop\Embed\PCB\Puma\BMRS-PCB.001.01_PUMA_Motor_Driver\BMRS-PCB.002.01_PUMA_PDB\PM-1_PBD.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1777.005mil|Location2.X=1788.643mil|Location1.Y=2834.768mil|Location2.Y=2846.018mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\ivank\Desktop\Embed\PCB\Puma\BMRS-PCB.001.01_PUMA_Motor_Driver\BMRS-PCB.002.01_PUMA_PDB\PM-1_PBD.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1777.005mil|Location2.X=1788.643mil|Location1.Y=2834.768mil|Location2.Y=2846.018mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.098mm &lt; 0.254mm) Between Pad U2-2(46.35mm,71.55mm) on Top Layer And Via (45mm,72.5mm) from Top Layer to Bottom Layer [Top Solder] Mask Sliver [0.098mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\ivank\Desktop\Embed\PCB\Puma\BMRS-PCB.001.01_PUMA_Motor_Driver\BMRS-PCB.002.01_PUMA_PDB\PM-1_PBD.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1777.043mil|Location2.X=1788.293mil|Location1.Y=3033.619mil|Location2.Y=3044.869mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\ivank\Desktop\Embed\PCB\Puma\BMRS-PCB.001.01_PUMA_Motor_Driver\BMRS-PCB.002.01_PUMA_PDB\PM-1_PBD.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1777.043mil|Location2.X=1788.293mil|Location1.Y=3033.619mil|Location2.Y=3044.869mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.022mm &lt; 0.254mm) Between Pad U2-5(46.35mm,76.65mm) on Top Layer And Via (45mm,77.5mm) from Top Layer to Bottom Layer [Top Solder] Mask Sliver [0.022mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\ivank\Desktop\Embed\PCB\Puma\BMRS-PCB.001.01_PUMA_Motor_Driver\BMRS-PCB.002.01_PUMA_PDB\PM-1_PBD.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1288.617mil|Location2.X=1299.867mil|Location1.Y=2666.569mil|Location2.Y=2677.819mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\ivank\Desktop\Embed\PCB\Puma\BMRS-PCB.001.01_PUMA_Motor_Driver\BMRS-PCB.002.01_PUMA_PDB\PM-1_PBD.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1288.617mil|Location2.X=1299.867mil|Location1.Y=2666.569mil|Location2.Y=2677.819mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.254mm &lt; 0.254mm) Between Region (0 hole(s)) Top Solder And Via (32.5mm,67.5mm) from Top Layer to Bottom Layer [Top Solder] Mask Sliver [0.254mm]</acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="IDGT3WNMNKQTGJEZUSQ5P2SAZ4RNLXTRF1Y0OTI0CRRY1LBIJ4ENGJ"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Silk To Solder Mask (Clearance=0.254mm) (IsPad),(All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\ivank\Desktop\Embed\PCB\Puma\BMRS-PCB.001.01_PUMA_Motor_Driver\BMRS-PCB.002.01_PUMA_PDB\PM-1_PBD.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2315.066mil|Location2.X=2326.316mil|Location1.Y=1703.066mil|Location2.Y=1714.316mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\ivank\Desktop\Embed\PCB\Puma\BMRS-PCB.001.01_PUMA_Motor_Driver\BMRS-PCB.002.01_PUMA_PDB\PM-1_PBD.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2315.066mil|Location2.X=2326.316mil|Location1.Y=1703.066mil|Location2.Y=1714.316mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.251mm &lt; 0.254mm) Between Pad C10-1(59.05mm,43mm) on Top Layer And Text "C10" (58.75mm,43.55mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.251mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\ivank\Desktop\Embed\PCB\Puma\BMRS-PCB.001.01_PUMA_Motor_Driver\BMRS-PCB.002.01_PUMA_PDB\PM-1_PBD.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2330.308mil|Location2.X=2341.558mil|Location1.Y=1675.127mil|Location2.Y=1688.78mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\ivank\Desktop\Embed\PCB\Puma\BMRS-PCB.001.01_PUMA_Motor_Driver\BMRS-PCB.002.01_PUMA_PDB\PM-1_PBD.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2330.308mil|Location2.X=2341.558mil|Location1.Y=1675.127mil|Location2.Y=1688.78mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.198mm &lt; 0.254mm) Between Pad C10-1(59.05mm,43mm) on Top Layer And Track (59.5mm,42.8mm)(59.5mm,43.2mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.198mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\ivank\Desktop\Embed\PCB\Puma\BMRS-PCB.001.01_PUMA_Motor_Driver\BMRS-PCB.002.01_PUMA_PDB\PM-1_PBD.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2357.217mil|Location2.X=2368.467mil|Location1.Y=1703.093mil|Location2.Y=1714.343mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\ivank\Desktop\Embed\PCB\Puma\BMRS-PCB.001.01_PUMA_Motor_Driver\BMRS-PCB.002.01_PUMA_PDB\PM-1_PBD.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2357.217mil|Location2.X=2368.467mil|Location1.Y=1703.093mil|Location2.Y=1714.343mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.253mm &lt; 0.254mm) Between Pad C10-2(59.95mm,43mm) on Top Layer And Text "C10" (58.75mm,43.55mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.253mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\ivank\Desktop\Embed\PCB\Puma\BMRS-PCB.001.01_PUMA_Motor_Driver\BMRS-PCB.002.01_PUMA_PDB\PM-1_PBD.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2342.883mil|Location2.X=2354.133mil|Location1.Y=1679.414mil|Location2.Y=1690.664mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\ivank\Desktop\Embed\PCB\Puma\BMRS-PCB.001.01_PUMA_Motor_Driver\BMRS-PCB.002.01_PUMA_PDB\PM-1_PBD.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2342.883mil|Location2.X=2354.133mil|Location1.Y=1679.414mil|Location2.Y=1690.664mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.154mm &lt; 0.254mm) Between Pad C10-2(59.95mm,43mm) on Top Layer And Track (59.5mm,42.8mm)(59.5mm,43.2mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.154mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\ivank\Desktop\Embed\PCB\Puma\BMRS-PCB.001.01_PUMA_Motor_Driver\BMRS-PCB.002.01_PUMA_PDB\PM-1_PBD.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2209.693mil|Location2.X=2220.943mil|Location1.Y=1406.131mil|Location2.Y=1417.381mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\ivank\Desktop\Embed\PCB\Puma\BMRS-PCB.001.01_PUMA_Motor_Driver\BMRS-PCB.002.01_PUMA_PDB\PM-1_PBD.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2209.693mil|Location2.X=2220.943mil|Location1.Y=1406.131mil|Location2.Y=1417.381mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.139mm &lt; 0.254mm) Between Pad C1-1(56.5mm,35.55mm) on Top Layer And Track (56.3mm,36mm)(56.7mm,36mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.139mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\ivank\Desktop\Embed\PCB\Puma\BMRS-PCB.001.01_PUMA_Motor_Driver\BMRS-PCB.002.01_PUMA_PDB\PM-1_PBD.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2520.048mil|Location2.X=2531.298mil|Location1.Y=1689.257mil|Location2.Y=1700.507mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\ivank\Desktop\Embed\PCB\Puma\BMRS-PCB.001.01_PUMA_Motor_Driver\BMRS-PCB.002.01_PUMA_PDB\PM-1_PBD.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2520.048mil|Location2.X=2531.298mil|Location1.Y=1689.257mil|Location2.Y=1700.507mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.154mm &lt; 0.254mm) Between Pad C11-1(64.45mm,43.25mm) on Top Layer And Track (64mm,43.05mm)(64mm,43.45mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.154mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\ivank\Desktop\Embed\PCB\Puma\BMRS-PCB.001.01_PUMA_Motor_Driver\BMRS-PCB.002.01_PUMA_PDB\PM-1_PBD.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2507.473mil|Location2.X=2518.723mil|Location1.Y=1684.969mil|Location2.Y=1698.622mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\ivank\Desktop\Embed\PCB\Puma\BMRS-PCB.001.01_PUMA_Motor_Driver\BMRS-PCB.002.01_PUMA_PDB\PM-1_PBD.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2507.473mil|Location2.X=2518.723mil|Location1.Y=1684.969mil|Location2.Y=1698.622mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.198mm &lt; 0.254mm) Between Pad C11-2(63.55mm,43.25mm) on Top Layer And Track (64mm,43.05mm)(64mm,43.45mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.198mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\ivank\Desktop\Embed\PCB\Puma\BMRS-PCB.001.01_PUMA_Motor_Driver\BMRS-PCB.002.01_PUMA_PDB\PM-1_PBD.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2209.851mil|Location2.X=2221.101mil|Location1.Y=1417.205mil|Location2.Y=1428.455mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\ivank\Desktop\Embed\PCB\Puma\BMRS-PCB.001.01_PUMA_Motor_Driver\BMRS-PCB.002.01_PUMA_PDB\PM-1_PBD.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2209.851mil|Location2.X=2221.101mil|Location1.Y=1417.205mil|Location2.Y=1428.455mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.135mm &lt; 0.254mm) Between Pad C1-2(56.5mm,36.45mm) on Top Layer And Track (56.3mm,36mm)(56.7mm,36mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.135mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\ivank\Desktop\Embed\PCB\Puma\BMRS-PCB.001.01_PUMA_Motor_Driver\BMRS-PCB.002.01_PUMA_PDB\PM-1_PBD.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1849.38mil|Location2.X=1860.63mil|Location1.Y=3210.56mil|Location2.Y=3224.213mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\ivank\Desktop\Embed\PCB\Puma\BMRS-PCB.001.01_PUMA_Motor_Driver\BMRS-PCB.002.01_PUMA_PDB\PM-1_PBD.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1849.38mil|Location2.X=1860.63mil|Location1.Y=3210.56mil|Location2.Y=3224.213mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.198mm &lt; 0.254mm) Between Pad C13-1(46.834mm,82mm) on Top Layer And Track (47.284mm,81.8mm)(47.284mm,82.2mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.198mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\ivank\Desktop\Embed\PCB\Puma\BMRS-PCB.001.01_PUMA_Motor_Driver\BMRS-PCB.002.01_PUMA_PDB\PM-1_PBD.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1861.955mil|Location2.X=1873.205mil|Location1.Y=3214.847mil|Location2.Y=3226.097mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\ivank\Desktop\Embed\PCB\Puma\BMRS-PCB.001.01_PUMA_Motor_Driver\BMRS-PCB.002.01_PUMA_PDB\PM-1_PBD.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1861.955mil|Location2.X=1873.205mil|Location1.Y=3214.847mil|Location2.Y=3226.097mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.154mm &lt; 0.254mm) Between Pad C13-2(47.734mm,82mm) on Top Layer And Track (47.284mm,81.8mm)(47.284mm,82.2mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.154mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\ivank\Desktop\Embed\PCB\Puma\BMRS-PCB.001.01_PUMA_Motor_Driver\BMRS-PCB.002.01_PUMA_PDB\PM-1_PBD.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1784.54mil|Location2.X=1795.79mil|Location1.Y=3269.615mil|Location2.Y=3283.268mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\ivank\Desktop\Embed\PCB\Puma\BMRS-PCB.001.01_PUMA_Motor_Driver\BMRS-PCB.002.01_PUMA_PDB\PM-1_PBD.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1784.54mil|Location2.X=1795.79mil|Location1.Y=3269.615mil|Location2.Y=3283.268mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.198mm &lt; 0.254mm) Between Pad C14-1(45.188mm,83.5mm) on Top Layer And Track (45.638mm,83.3mm)(45.638mm,83.7mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.198mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\ivank\Desktop\Embed\PCB\Puma\BMRS-PCB.001.01_PUMA_Motor_Driver\BMRS-PCB.002.01_PUMA_PDB\PM-1_PBD.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1797.115mil|Location2.X=1808.365mil|Location1.Y=3273.903mil|Location2.Y=3285.153mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\ivank\Desktop\Embed\PCB\Puma\BMRS-PCB.001.01_PUMA_Motor_Driver\BMRS-PCB.002.01_PUMA_PDB\PM-1_PBD.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1797.115mil|Location2.X=1808.365mil|Location1.Y=3273.903mil|Location2.Y=3285.153mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.154mm &lt; 0.254mm) Between Pad C14-2(46.087mm,83.5mm) on Top Layer And Track (45.638mm,83.3mm)(45.638mm,83.7mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.154mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\ivank\Desktop\Embed\PCB\Puma\BMRS-PCB.001.01_PUMA_Motor_Driver\BMRS-PCB.002.01_PUMA_PDB\PM-1_PBD.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1771.6mil|Location2.X=1782.85mil|Location1.Y=3851.79mil|Location2.Y=3865.569mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\ivank\Desktop\Embed\PCB\Puma\BMRS-PCB.001.01_PUMA_Motor_Driver\BMRS-PCB.002.01_PUMA_PDB\PM-1_PBD.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1771.6mil|Location2.X=1782.85mil|Location1.Y=3851.79mil|Location2.Y=3865.569mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.215mm &lt; 0.254mm) Between Pad C17-1(45.467mm,97.687mm) on Top Layer And Text "R7" (43.964mm,97.425mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.215mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\ivank\Desktop\Embed\PCB\Puma\BMRS-PCB.001.01_PUMA_Motor_Driver\BMRS-PCB.002.01_PUMA_PDB\PM-1_PBD.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1795.54mil|Location2.X=1806.79mil|Location1.Y=3828.178mil|Location2.Y=3841.831mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\ivank\Desktop\Embed\PCB\Puma\BMRS-PCB.001.01_PUMA_Motor_Driver\BMRS-PCB.002.01_PUMA_PDB\PM-1_PBD.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1795.54mil|Location2.X=1806.79mil|Location1.Y=3828.178mil|Location2.Y=3841.831mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.198mm &lt; 0.254mm) Between Pad C17-1(45.467mm,97.687mm) on Top Layer And Track (45.917mm,97.487mm)(45.917mm,97.887mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.198mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\ivank\Desktop\Embed\PCB\Puma\BMRS-PCB.001.01_PUMA_Motor_Driver\BMRS-PCB.002.01_PUMA_PDB\PM-1_PBD.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1808.114mil|Location2.X=1819.364mil|Location1.Y=3832.465mil|Location2.Y=3843.715mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\ivank\Desktop\Embed\PCB\Puma\BMRS-PCB.001.01_PUMA_Motor_Driver\BMRS-PCB.002.01_PUMA_PDB\PM-1_PBD.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1808.114mil|Location2.X=1819.364mil|Location1.Y=3832.465mil|Location2.Y=3843.715mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.154mm &lt; 0.254mm) Between Pad C17-2(46.367mm,97.687mm) on Top Layer And Track (45.917mm,97.487mm)(45.917mm,97.887mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.154mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\ivank\Desktop\Embed\PCB\Puma\BMRS-PCB.001.01_PUMA_Motor_Driver\BMRS-PCB.002.01_PUMA_PDB\PM-1_PBD.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2279.487mil|Location2.X=2290.737mil|Location1.Y=1354.767mil|Location2.Y=1366.017mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\ivank\Desktop\Embed\PCB\Puma\BMRS-PCB.001.01_PUMA_Motor_Driver\BMRS-PCB.002.01_PUMA_PDB\PM-1_PBD.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2279.487mil|Location2.X=2290.737mil|Location1.Y=1354.767mil|Location2.Y=1366.017mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.107mm &lt; 0.254mm) Between Pad C6-1(58.3mm,34.25mm) on Top Layer And Track (57.2mm,34.7mm)(57.9mm,34.7mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.107mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\ivank\Desktop\Embed\PCB\Puma\BMRS-PCB.001.01_PUMA_Motor_Driver\BMRS-PCB.002.01_PUMA_PDB\PM-1_PBD.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2300.78mil|Location2.X=2312.03mil|Location1.Y=1330.639mil|Location2.Y=1344.292mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\ivank\Desktop\Embed\PCB\Puma\BMRS-PCB.001.01_PUMA_Motor_Driver\BMRS-PCB.002.01_PUMA_PDB\PM-1_PBD.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2300.78mil|Location2.X=2312.03mil|Location1.Y=1330.639mil|Location2.Y=1344.292mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.198mm &lt; 0.254mm) Between Pad C6-1(58.3mm,34.25mm) on Top Layer And Track (58.75mm,34.05mm)(58.75mm,34.45mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.198mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\ivank\Desktop\Embed\PCB\Puma\BMRS-PCB.001.01_PUMA_Motor_Driver\BMRS-PCB.002.01_PUMA_PDB\PM-1_PBD.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2313.355mil|Location2.X=2324.605mil|Location1.Y=1334.926mil|Location2.Y=1346.176mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\ivank\Desktop\Embed\PCB\Puma\BMRS-PCB.001.01_PUMA_Motor_Driver\BMRS-PCB.002.01_PUMA_PDB\PM-1_PBD.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2313.355mil|Location2.X=2324.605mil|Location1.Y=1334.926mil|Location2.Y=1346.176mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.154mm &lt; 0.254mm) Between Pad C6-2(59.2mm,34.25mm) on Top Layer And Track (58.75mm,34.05mm)(58.75mm,34.45mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.154mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\ivank\Desktop\Embed\PCB\Puma\BMRS-PCB.001.01_PUMA_Motor_Driver\BMRS-PCB.002.01_PUMA_PDB\PM-1_PBD.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2476.789mil|Location2.X=2488.039mil|Location1.Y=1371.683mil|Location2.Y=1382.933mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\ivank\Desktop\Embed\PCB\Puma\BMRS-PCB.001.01_PUMA_Motor_Driver\BMRS-PCB.002.01_PUMA_PDB\PM-1_PBD.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2476.789mil|Location2.X=2488.039mil|Location1.Y=1371.683mil|Location2.Y=1382.933mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.207mm &lt; 0.254mm) Between Pad R4-2(63.5mm,35.3mm) on Top Layer And Track (62.8mm,34.7mm)(62.8mm,35.4mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.207mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\ivank\Desktop\Embed\PCB\Puma\BMRS-PCB.001.01_PUMA_Motor_Driver\BMRS-PCB.002.01_PUMA_PDB\PM-1_PBD.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1836.595mil|Location2.X=1847.845mil|Location1.Y=3114.388mil|Location2.Y=3125.638mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\ivank\Desktop\Embed\PCB\Puma\BMRS-PCB.001.01_PUMA_Motor_Driver\BMRS-PCB.002.01_PUMA_PDB\PM-1_PBD.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1836.595mil|Location2.X=1847.845mil|Location1.Y=3114.388mil|Location2.Y=3125.638mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.165mm &lt; 0.254mm) Between Pad R6-2(46.45mm,79.25mm) on Top Layer And Track (46.95mm,79.25mm)(47.75mm,79.25mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.165mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\ivank\Desktop\Embed\PCB\Puma\BMRS-PCB.001.01_PUMA_Motor_Driver\BMRS-PCB.002.01_PUMA_PDB\PM-1_PBD.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1832.958mil|Location2.X=1844.208mil|Location1.Y=3780.2mil|Location2.Y=3791.45mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\ivank\Desktop\Embed\PCB\Puma\BMRS-PCB.001.01_PUMA_Motor_Driver\BMRS-PCB.002.01_PUMA_PDB\PM-1_PBD.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1832.958mil|Location2.X=1844.208mil|Location1.Y=3780.2mil|Location2.Y=3791.45mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.17mm &lt; 0.254mm) Between Pad R7-2(46.714mm,96.625mm) on Top Layer And Track (46.7mm,96mm)(47.5mm,96mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.17mm]</acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="IDSA3HOHL3JAB5MTMMZVJMFFYAHNF10PVQO5GY4Z41L5MT2H2VTOK"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Silk to Silk (Clearance=0.254mm) (All),(All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\ivank\Desktop\Embed\PCB\Puma\BMRS-PCB.001.01_PUMA_Motor_Driver\BMRS-PCB.002.01_PUMA_PDB\PM-1_PBD.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1879.759mil|Location2.X=1891.009mil|Location1.Y=2231.14mil|Location2.Y=2242.39mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\ivank\Desktop\Embed\PCB\Puma\BMRS-PCB.001.01_PUMA_Motor_Driver\BMRS-PCB.002.01_PUMA_PDB\PM-1_PBD.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1879.759mil|Location2.X=1891.009mil|Location1.Y=2231.14mil|Location2.Y=2242.39mil|Absolute=True">Silk To Silk Clearance Constraint: (0.222mm &lt; 0.254mm) Between Region (0 hole(s)) Top Overlay And Text "L1" (47.75mm,56mm) on Top Overlay Silk Text to Silk Clearance [0.222mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\ivank\Desktop\Embed\PCB\Puma\BMRS-PCB.001.01_PUMA_Motor_Driver\BMRS-PCB.002.01_PUMA_PDB\PM-1_PBD.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2337.204mil|Location2.X=2348.454mil|Location1.Y=1703.063mil|Location2.Y=1714.313mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\ivank\Desktop\Embed\PCB\Puma\BMRS-PCB.001.01_PUMA_Motor_Driver\BMRS-PCB.002.01_PUMA_PDB\PM-1_PBD.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2337.204mil|Location2.X=2348.454mil|Location1.Y=1703.063mil|Location2.Y=1714.313mil|Absolute=True">Silk To Silk Clearance Constraint: (0.252mm &lt; 0.254mm) Between Text "C10" (58.75mm,43.55mm) on Top Overlay And Track (59.5mm,42.8mm)(59.5mm,43.2mm) on Top Overlay Silk Text to Silk Clearance [0.252mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\ivank\Desktop\Embed\PCB\Puma\BMRS-PCB.001.01_PUMA_Motor_Driver\BMRS-PCB.002.01_PUMA_PDB\PM-1_PBD.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1989.253mil|Location2.X=2000.503mil|Location1.Y=2619.612mil|Location2.Y=2630.862mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\ivank\Desktop\Embed\PCB\Puma\BMRS-PCB.001.01_PUMA_Motor_Driver\BMRS-PCB.002.01_PUMA_PDB\PM-1_PBD.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1989.253mil|Location2.X=2000.503mil|Location1.Y=2619.612mil|Location2.Y=2630.862mil|Absolute=True">Silk To Silk Clearance Constraint: (0.212mm &lt; 0.254mm) Between Text "C2" (50.5mm,66.8mm) on Top Overlay And Track (50.3mm,66.5mm)(51.1mm,66.5mm) on Top Overlay Silk Text to Silk Clearance [0.212mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\ivank\Desktop\Embed\PCB\Puma\BMRS-PCB.001.01_PUMA_Motor_Driver\BMRS-PCB.002.01_PUMA_PDB\PM-1_PBD.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1685.09mil|Location2.X=1696.34mil|Location1.Y=2619.453mil|Location2.Y=2630.703mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\ivank\Desktop\Embed\PCB\Puma\BMRS-PCB.001.01_PUMA_Motor_Driver\BMRS-PCB.002.01_PUMA_PDB\PM-1_PBD.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1685.09mil|Location2.X=1696.34mil|Location1.Y=2619.453mil|Location2.Y=2630.703mil|Absolute=True">Silk To Silk Clearance Constraint: (0.204mm &lt; 0.254mm) Between Text "C3" (42.75mm,66.8mm) on Top Overlay And Track (42.55mm,66.5mm)(43.35mm,66.5mm) on Top Overlay Silk Text to Silk Clearance [0.204mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\ivank\Desktop\Embed\PCB\Puma\BMRS-PCB.001.01_PUMA_Motor_Driver\BMRS-PCB.002.01_PUMA_PDB\PM-1_PBD.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1834.065mil|Location2.X=1845.315mil|Location1.Y=1080.94mil|Location2.Y=1092.19mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\ivank\Desktop\Embed\PCB\Puma\BMRS-PCB.001.01_PUMA_Motor_Driver\BMRS-PCB.002.01_PUMA_PDB\PM-1_PBD.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1834.065mil|Location2.X=1845.315mil|Location1.Y=1080.94mil|Location2.Y=1092.19mil|Absolute=True">Silk To Silk Clearance Constraint: (0.247mm &lt; 0.254mm) Between Text "C5" (46.5mm,27.75mm) on Top Overlay And Track (46.3mm,27.4mm)(47.5mm,27.4mm) on Top Overlay Silk Text to Silk Clearance [0.247mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\ivank\Desktop\Embed\PCB\Puma\BMRS-PCB.001.01_PUMA_Motor_Driver\BMRS-PCB.002.01_PUMA_PDB\PM-1_PBD.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1876.881mil|Location2.X=1888.131mil|Location1.Y=2234.899mil|Location2.Y=2246.149mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\ivank\Desktop\Embed\PCB\Puma\BMRS-PCB.001.01_PUMA_Motor_Driver\BMRS-PCB.002.01_PUMA_PDB\PM-1_PBD.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1876.881mil|Location2.X=1888.131mil|Location1.Y=2234.899mil|Location2.Y=2246.149mil|Absolute=True">Silk To Silk Clearance Constraint: (0.219mm &lt; 0.254mm) Between Text "L1" (47.75mm,56mm) on Top Overlay And Track (48mm,56.55mm)(48mm,57.35mm) on Top Overlay Silk Text to Silk Clearance [0.219mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\ivank\Desktop\Embed\PCB\Puma\BMRS-PCB.001.01_PUMA_Motor_Driver\BMRS-PCB.002.01_PUMA_PDB\PM-1_PBD.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2441.932mil|Location2.X=2453.182mil|Location1.Y=1736.512mil|Location2.Y=1747.762mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\ivank\Desktop\Embed\PCB\Puma\BMRS-PCB.001.01_PUMA_Motor_Driver\BMRS-PCB.002.01_PUMA_PDB\PM-1_PBD.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2441.932mil|Location2.X=2453.182mil|Location1.Y=1736.512mil|Location2.Y=1747.762mil|Absolute=True">Silk To Silk Clearance Constraint: (0.186mm &lt; 0.254mm) Between Text "R3" (62.25mm,44mm) on Top Overlay And Track (61.2mm,44.25mm)(62mm,44.25mm) on Top Overlay Silk Text to Silk Clearance [0.186mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\ivank\Desktop\Embed\PCB\Puma\BMRS-PCB.001.01_PUMA_Motor_Driver\BMRS-PCB.002.01_PUMA_PDB\PM-1_PBD.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2441.909mil|Location2.X=2453.159mil|Location1.Y=1765.515mil|Location2.Y=1776.765mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\ivank\Desktop\Embed\PCB\Puma\BMRS-PCB.001.01_PUMA_Motor_Driver\BMRS-PCB.002.01_PUMA_PDB\PM-1_PBD.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2441.909mil|Location2.X=2453.159mil|Location1.Y=1765.515mil|Location2.Y=1776.765mil|Absolute=True">Silk To Silk Clearance Constraint: (0.185mm &lt; 0.254mm) Between Text "R3" (62.25mm,44mm) on Top Overlay And Track (62mm,44.25mm)(62mm,45.05mm) on Top Overlay Silk Text to Silk Clearance [0.185mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\ivank\Desktop\Embed\PCB\Puma\BMRS-PCB.001.01_PUMA_Motor_Driver\BMRS-PCB.002.01_PUMA_PDB\PM-1_PBD.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1271.831mil|Location2.X=1283.081mil|Location1.Y=3121.421mil|Location2.Y=3132.671mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\ivank\Desktop\Embed\PCB\Puma\BMRS-PCB.001.01_PUMA_Motor_Driver\BMRS-PCB.002.01_PUMA_PDB\PM-1_PBD.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1271.831mil|Location2.X=1283.081mil|Location1.Y=3121.421mil|Location2.Y=3132.671mil|Absolute=True">Silk To Silk Clearance Constraint: (0.204mm &lt; 0.254mm) Between Text "U2" (32.25mm,79.55mm) on Top Overlay And Track (32.25mm,79.25mm)(33.05mm,79.25mm) on Top Overlay Silk Text to Silk Clearance [0.204mm]</acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br></body>
+</html>

@@ -1,0 +1,18 @@
+Change Component Designator: OldDesignator=C14 NewDesignator=C15
+Change Component Designator: OldDesignator=C15 NewDesignator=C16
+Change Component Designator: OldDesignator=C16 NewDesignator=C17
+Change Component Designator: OldDesignator=C17 NewDesignator=C18
+Change Component Designator: OldDesignator=C18 NewDesignator=C19
+Added Component: Designator=C14(CAPC0402(1005)60_L)
+Add component. Clean all parameters for all variants
+Added Pin To Net: NetName=GND Pin=C14-1
+Added Pin To Net: NetName=+15V Pin=C14-2
+Change Net Name : Old Net Name=NetC16_1 New Net Name=NetC17_1
+Added Member To Class: ClassName=PM-1_PDB Member=Component C6 SC100N100V4KX
+Added Member To Class: ClassName=PM-1_PDB Member=Component C7 SC1U100V6KX
+Added Member To Class: ClassName=PM-1_PDB Member=Component C9 SC1U100V6KX
+Added Member To Class: ClassName=PM-1_PDB Member=Component C11 SCD68N50V2KX
+Added Member To Class: ClassName=PM-1_PDB Member=Component C14 SC100N100V4KX
+Added Member To Class: ClassName=PM-1_PDB Member=Component C16 SC47U25V6KX
+Added Member To Class: ClassName=PM-1_PDB Member=Component C19 SC47U10V6KX
+Added Room: Name=PM-1_PDB

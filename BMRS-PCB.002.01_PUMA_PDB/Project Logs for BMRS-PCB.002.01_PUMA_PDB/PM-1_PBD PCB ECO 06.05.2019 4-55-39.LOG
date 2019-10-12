@@ -1,0 +1,6 @@
+Change Component Footprint: Designator=U1 Old Footprint=SOT95P280X145-5L New Footprint=POWERSO8
+Change Component Description : Designator=U1 Old Description=60 V Input, 3.5 A, Step Down DC-DC Converter New Description=60 V Input, 3.5 A, Step Down DC-DC Converter 
+Added Pin To Net: NetName=NetC9_2 Pin=U1-6
+Added Pin To Net: NetName=GND Pin=U1-7
+Added Pin To Net: NetName=NetC1_2 Pin=U1-8
+Added Pin To Net: NetName=GND Pin=U1-9

@@ -1,0 +1,12 @@
+Output: NC Drill Files
+Type  : NC Drill
+From  : Project [BMRS-PCB.002.01_PUMA_PDB.PrjPcb]
+   Generated File[PM-1_PBD.TXT]
+   Generated File[PM-1_PBD.LDP]
+   Generated File[PM-1_PBD.DRR]
+
+
+Files Generated   : 3
+Documents Printed : 0
+
+Finished Output Generation At 13:18:09 On 07.05.2019

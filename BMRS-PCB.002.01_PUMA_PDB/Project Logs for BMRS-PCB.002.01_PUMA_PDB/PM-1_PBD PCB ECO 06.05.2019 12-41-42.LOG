@@ -1,0 +1,17 @@
+Added Component: Designator=PTH37(POWERHOLE-LP)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Hole diameter (mm)"; Value = "2.5"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Pad diameter (mm)"; Value = "5"; VariantName = "[No Variations]"
+Added Component: Designator=PTH38(POWERHOLE-LP)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Hole diameter (mm)"; Value = "2.5"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Pad diameter (mm)"; Value = "5"; VariantName = "[No Variations]"
+Added Pin To Net: NetName=NetPTH37_1 Pin=PTH37-1
+Added Pin To Net: NetName=NetPTH37_1 Pin=PTH38-1
+Added Net: Name=NetPTH37_1
+Added Member To Class: ClassName=PM-1_PDB Member=Component C14 SC100N100V4KX
+Added Member To Class: ClassName=PM-1_PDB Member=Component C15 SC47U25V6KX
+Added Member To Class: ClassName=PM-1_PDB Member=Component C17 SCD68N50V2KX
+Added Member To Class: ClassName=PM-1_PDB Member=Component PTH37 LGND
+Added Member To Class: ClassName=PM-1_PDB Member=Component PTH38 LGND
+Added Room: Name=PM-1_PDB
